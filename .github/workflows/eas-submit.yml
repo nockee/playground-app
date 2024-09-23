@@ -1,0 +1,42 @@
+name: EAS submit
+
+on:
+  workflow_call:
+    inputs:
+      platform:
+        description: The platform to submit the build to
+        required: true
+        type: string
+
+jobs:
+  eas-submit:
+    if:  ${{ inputs.platform == 'android' || inputs.platform == 'ios' }}
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: 🏗 Setup repo
+        uses: actions/checkout@v4
+
+      - name: 🏗 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 🏗 Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          packager: npm
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-${{ inputs.platform }}
+
+      - name: 🚀 Submit app
+        run: |
+          eas submit \
+            --path ${{ inputs.platform == 'ios' && 'build.ipa' || 'build.apk' }} \
+            --profile production \
+            --platform ${{ inputs.platform }} \
+            --non-interactive

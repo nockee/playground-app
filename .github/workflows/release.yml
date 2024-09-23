@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         platform: [ios, android]
-    uses: ./.github/workflows/build-native-app.yml
+    uses: ./.github/workflows/eas-build.yml
     secrets: inherit
     with:
       platform: ${{ matrix.platform }}
@@ -24,32 +24,7 @@ jobs:
     strategy:
       matrix:
         platform: [ios, android]
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🏗 Setup repo
-        uses: actions/checkout@v4
-
-      - name: 🏗 Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: 🏗 Setup EAS
-        uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          packager: npm
-          token: ${{ secrets.EXPO_TOKEN }}
-
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: build-${{ matrix.platform }}
-
-      - name: 🚀 Submit app
-        run: |
-          eas submit \
-            --path ${{ matrix.platform == 'ios' && 'build.ipa' || 'build.apk' }} \
-            --profile production \
-            --platform ${{ matrix.platform }} \
-            --non-interactive
+    uses: ./.github/workflows/eas-submit.yml
+    secrets: inherit
+    with:
+      platform: ${{ matrix.platform }}
