@@ -91,6 +91,7 @@
         }
       }
     ],
+    "@semantic-release/npm",
     [
       "@semantic-release/changelog",
       {

@@ -30,7 +30,7 @@ jobs:
   submit-android:
     name: Submit Android preview app
     needs: build-android
-    uses: ./.github/workflows/submit-firebase.yml
+    uses: ./.github/workflows/firebase-app-distribution.yml
     secrets: inherit
     with:
       artifact_name: build-android

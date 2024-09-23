@@ -1,0 +1,53 @@
+name: EAS update
+
+on:
+  workflow_call:
+    inputs:
+      branch:
+        description: Branch to publish the update group on
+        required: false
+        type: string
+      channel:
+        description: Channel that the published update should affect
+        required: false
+        type: string
+      platform:
+        description: The platform to update the build on
+        required: true
+        type: string
+      profile:
+        description: Name of the build profile from eas.json
+        required: true
+        type: string
+
+jobs:
+  update:
+    if:  ${{ inputs.platform == 'android' || inputs.platform == 'ios' }}
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: 🏗 Setup repo
+        uses: actions/checkout@v4
+
+      - name: 🏗 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 🏗 Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          packager: npm
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🚀 Update app
+        run: |
+          eas update \
+            ${{ inputs.branch != '' && format('--branch {0}', inputs.branch) || '' }} \
+            ${{ inputs.channel != '' && format('--channel {0}', inputs.channel) || '' }} \
+            --profile ${{ inputs.profile }} \
+            --platform ${{ inputs.platform }} \
+            --non-interactive

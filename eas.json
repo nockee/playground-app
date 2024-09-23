@@ -10,16 +10,23 @@
       "distribution": "internal",
       "env": {
         "APP_VARIANT": "development"
-      }
+      },
+      "channel": "development"
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "channel": "preview"
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "channel": "production"
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "ascAppId": "6711361520"
+      }
+    }
   }
 }

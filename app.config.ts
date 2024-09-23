@@ -6,7 +6,7 @@ const IS_DEV = process.env.APP_VARIANT === 'development';
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  name: `playground${IS_DEV ? ' (dev)' : ''}`,
+  name: `nockee playground${IS_DEV ? ' (dev)' : ''}`,
   owner: 'nockee',
   slug: 'playground-app',
   version: packageJson.version,
@@ -21,6 +21,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   ios: {
     bundleIdentifier: `com.nockee.playground${IS_DEV ? '.staging' : ''}`,
+    config: {
+      usesNonExemptEncryption: false,
+    },
     googleServicesFile: IS_DEV
       ? './config/GoogleService-Info.staging.plist'
       : './config/GoogleService-Info.production.plist',
@@ -49,6 +52,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ],
   experiments: {
     typedRoutes: true,
+  },
+  runtimeVersion: {
+    policy: 'appVersion',
+  },
+  updates: {
+    url: 'https://u.expo.dev/dd959df1-9601-45d6-a591-92b05714d77d'
   },
   extra: {
     eas: {

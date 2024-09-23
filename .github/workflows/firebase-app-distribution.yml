@@ -1,4 +1,4 @@
-name: Submit native app to Firebase
+name: Firebase App Distribution
 
 on:
   workflow_call:
