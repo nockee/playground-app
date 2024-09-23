@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.9](https://github.com/nockee/playground-app/compare/v1.0.8...v1.0.9) (2024-09-23)
+
+### Miscellaneous Chores
+
+* **ci:** release workflow (work in progress) ([1c98735](https://github.com/nockee/playground-app/commit/1c98735750c488a119bb75e3f5b13a6716a44495))
+
 ## [1.0.8](https://github.com/nockee/playground-app/compare/v1.0.7...v1.0.8) (2024-09-23)
 
 ### Miscellaneous Chores
