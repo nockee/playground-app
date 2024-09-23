@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.7](https://github.com/nockee/playground-app/compare/v1.0.6...v1.0.7) (2024-09-23)
+
+### Bug Fixes
+
+* imports & broken package-lock.json file ([8433ba4](https://github.com/nockee/playground-app/commit/8433ba427f95193e885c71157b6a13ec23c89d0b))
+
 ## [1.0.6](https://github.com/nockee/playground-app/compare/v1.0.5...v1.0.6) (2024-09-23)
 
 ### Miscellaneous Chores
