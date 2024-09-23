@@ -6,25 +6,36 @@ on:
       - v**
 
 jobs:
-  build:
-    name: Build native app (${{ matrix.platform }})
-    strategy:
-      matrix:
-        platform: [ios, android]
+  build-android:
+    name: Build Android app
     uses: ./.github/workflows/eas-build.yml
     secrets: inherit
     with:
-      platform: ${{ matrix.platform }}
+      platform: android
       profile: production
 
-  submit:
-    name: Submit to ${{ matrix.platform == 'ios' && 'App Store' || 'Google Play' }}
+  build-ios:
+    name: Build iOS app
+    uses: ./.github/workflows/eas-build.yml
+    secrets: inherit
+    with:
+      platform: ios
+      profile: production
+
+  submit-android:
+    name: Submit to Google Play
     needs:
-      - build
-    strategy:
-      matrix:
-        platform: [ios, android]
+      - build-android
     uses: ./.github/workflows/eas-submit.yml
     secrets: inherit
     with:
-      platform: ${{ matrix.platform }}
+      platform: android
+
+  submit-ios:
+    name: Submit to App Store
+    needs:
+      - build-ios
+    uses: ./.github/workflows/eas-submit.yml
+    secrets: inherit
+    with:
+      platform: ios
