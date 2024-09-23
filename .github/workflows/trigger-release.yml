@@ -12,6 +12,7 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: 🏗 Setup repo
         uses: actions/checkout@v4
@@ -25,7 +26,7 @@ jobs:
       - name: Release
         uses: cycjimmy/semantic-release-action@c0334274aaaa912f0cd6f5b02b9710691509b1dc # v4.1.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}
         with:
           dry_run: ${{ github.event.inputs.dry_run }}
           extra_plugins: |
