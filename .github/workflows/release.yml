@@ -12,6 +12,7 @@ jobs:
       matrix:
         platform: [ios, android]
     uses: ./.github/workflows/build-native-app.yml
+    secrets: inherit
     with:
       platform: ${{ matrix.platform }}
       profile: production
