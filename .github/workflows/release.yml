@@ -1,0 +1,23 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - v**
+
+jobs:
+  build-ios-native-app:
+    name: Build iOS app
+    uses: ./.github/workflows/build-native-app.yml
+    secrets: inherit
+    with:
+      platform: ios
+      profile: production
+
+  build-android-native-app:
+    name: Build Android app
+    uses: ./.github/workflows/build-native-app.yml
+    secrets: inherit
+    with:
+      platform: android
+      profile: production
