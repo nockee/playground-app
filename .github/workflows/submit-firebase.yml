@@ -3,6 +3,10 @@ name: Submit native app to Firebase
 on:
   workflow_call:
     inputs:
+      artifact_name:
+        description: The name of the artifact to download
+        required: true
+        type: string
       firebase_app_id:
         description: The firebase app ID to distribute the build to
         required: true
@@ -25,7 +29,7 @@ jobs:
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
-          name: build-artifact
+          name: ${{ inputs.artifact_name }}
 
       - name: Determine build platform from artifact
         id: build_platform

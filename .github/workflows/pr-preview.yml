@@ -33,4 +33,5 @@ jobs:
     uses: ./.github/workflows/submit-firebase.yml
     secrets: inherit
     with:
+      artifact_name: build-android
       firebase_app_id: ${{ vars.FIREBASE_STAGING_ANDROID_APP_ID }}
