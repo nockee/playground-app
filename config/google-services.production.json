@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "588833973553",
+    "project_id": "nockee-playground",
+    "storage_bucket": "nockee-playground.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588833973553:android:6549a9b1644cd9f2bbfc10",
+        "android_client_info": {
+          "package_name": "com.nockee.playground"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588833973553-lrfd8c40dl02m02hscnd8cg86ook9p8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVo63VALLaNxVhwqltOFO_7QKwjGG4FrM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588833973553-lrfd8c40dl02m02hscnd8cg86ook9p8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588833973553:android:5b79dabc7ad4f2aabbfc10",
+        "android_client_info": {
+          "package_name": "com.nockee.playground.staging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588833973553-lrfd8c40dl02m02hscnd8cg86ook9p8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVo63VALLaNxVhwqltOFO_7QKwjGG4FrM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588833973553-lrfd8c40dl02m02hscnd8cg86ook9p8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,36 @@
+name: PR build preview app
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build-android:
+    name: Build Android preview app
+    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, '/preview-android') }}
+    uses: ./.github/workflows/build-native-app.yml
+    secrets: inherit
+    with:
+      platform: android
+      profile: preview
+
+  build-ios:
+    name: Build iOS preview app
+    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, '/preview-ios') }}
+    uses: ./.github/workflows/build-native-app.yml
+    secrets: inherit
+    with:
+      platform: ios
+      profile: preview
+
+  submit-android:
+    name: Submit Android preview app
+    needs: build-android
+    uses: ./.github/workflows/submit-firebase.yml
+    secrets: inherit
+    with:
+      firebase_app_id: ${{ vars.FIREBASE_STAGING_ANDROID_APP_ID }}
